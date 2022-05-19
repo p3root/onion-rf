@@ -7,13 +7,13 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='rpi-rf',
+    name='onion-rf',
     version='0.9.7',
-    author='Micha LaQua',
-    author_email='micha.laqua@gmail.com',
-    description='Sending and receiving 433/315MHz signals with low-cost GPIO RF modules on a Raspberry Pi',
+    author='Patrik',
+    author_email='patrik.pfaffenbauer@p3-software.eu',
+    description='Sending and receiving 433/315MHz signals with low-cost GPIO RF modules on a Onion Omega 2+',
     long_description=long_description,
-    url='https://github.com/milaq/rpi-rf',
+    url='https://github.com/p3root/rpi-rf',
     license='BSD',
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -34,9 +34,11 @@ setup(
         '433',
         '433mhz',
         '315',
-        '315mhz'
+        '315mhz',
+        'onion',
+        'omega'
     ],
-    install_requires=['RPi.GPIO'],
-    scripts=['scripts/rpi-rf_send', 'scripts/rpi-rf_receive'],
+    install_requires=['onion-gpio-sysfs'],
+    scripts=['scripts/onion-rf_send', 'scripts/onion-rf_receive'],
     packages=find_packages(exclude=['contrib', 'docs', 'tests'])
 )
