@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
-import argparse
 import signal
 import sys
 import time
 import logging
 
-from rpi_rf import RFDevice
+from onion_rf import RFDevice
 
 rfdevice = None
 
@@ -18,16 +17,12 @@ def exithandler(signal, frame):
 logging.basicConfig(level=logging.INFO, datefmt='%Y-%m-%d %H:%M:%S',
                     format='%(asctime)-15s - [%(levelname)s] %(module)s: %(message)s', )
 
-parser = argparse.ArgumentParser(description='Receives a decimal code via a 433/315MHz GPIO device')
-parser.add_argument('-g', dest='gpio', type=int, default=27,
-                    help="GPIO pin (Default: 27)")
-args = parser.parse_args()
 
 signal.signal(signal.SIGINT, exithandler)
-rfdevice = RFDevice(args.gpio)
+rfdevice = RFDevice(19)
 rfdevice.enable_rx()
 timestamp = None
-logging.info("Listening for codes on GPIO " + str(args.gpio))
+logging.info("Listening for codes on GPIO " + str(19))
 while True:
     rfdevice.rx_poll_detection()
     if rfdevice.rx_code_timestamp != timestamp:
